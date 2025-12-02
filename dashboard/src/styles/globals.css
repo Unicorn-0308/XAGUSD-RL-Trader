@@ -1,0 +1,187 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Dark theme variables */
+  --bg-primary: #0a0e14;
+  --bg-secondary: #0f1419;
+  --bg-card: #151b23;
+  --bg-elevated: #1c2430;
+  --border-color: #2d3748;
+  --text-primary: #e6edf3;
+  --text-secondary: #8b949e;
+  --text-muted: #6b7280;
+  
+  /* Trading colors */
+  --profit: #10b981;
+  --loss: #ef4444;
+  --accent: #3b82f6;
+}
+
+.light {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-elevated: #ffffff;
+  --border-color: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Card styles */
+@layer components {
+  .card {
+    @apply bg-dark-bg-card dark:bg-dark-bg-card light:bg-light-bg-card;
+    @apply border border-dark-border dark:border-dark-border light:border-light-border;
+    @apply rounded-lg p-4;
+    background: var(--bg-card);
+    border-color: var(--border-color);
+  }
+  
+  .card-elevated {
+    @apply card;
+    background: var(--bg-elevated);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+  }
+  
+  .btn {
+    @apply px-4 py-2 rounded-md font-medium transition-all duration-200;
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+  
+  .btn-primary {
+    @apply btn bg-accent-blue text-white;
+    @apply hover:bg-blue-600 focus:ring-blue-500;
+  }
+  
+  .btn-success {
+    @apply btn bg-profit text-white;
+    @apply hover:bg-profit-dark focus:ring-profit;
+  }
+  
+  .btn-danger {
+    @apply btn bg-loss text-white;
+    @apply hover:bg-loss-dark focus:ring-loss;
+  }
+  
+  .btn-secondary {
+    @apply btn border;
+    background: var(--bg-elevated);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+  }
+  
+  .btn-secondary:hover {
+    background: var(--bg-card);
+  }
+  
+  .input {
+    @apply w-full px-3 py-2 rounded-md;
+    @apply focus:outline-none focus:ring-2 focus:ring-accent-blue;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+  }
+  
+  .label {
+    @apply block text-sm font-medium mb-1;
+    color: var(--text-secondary);
+  }
+}
+
+/* Animations */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px currentColor;
+  }
+  50% {
+    box-shadow: 0 0 20px currentColor;
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Status indicators */
+.status-dot {
+  @apply w-2 h-2 rounded-full;
+}
+
+.status-dot.running {
+  @apply bg-profit;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.status-dot.stopped {
+  @apply bg-loss;
+}
+
+.status-dot.paused {
+  @apply bg-accent-amber;
+}
+
+.status-dot.error {
+  @apply bg-loss;
+}
+
+/* Number styling */
+.number-positive {
+  color: var(--profit);
+}
+
+.number-negative {
+  color: var(--loss);
+}
+
+.number-neutral {
+  color: var(--text-primary);
+}
+
+/* Grid patterns for background */
+.grid-pattern {
+  background-image: 
+    linear-gradient(to right, var(--border-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border-color) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.1;
+}
+

@@ -205,3 +205,54 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# =============================================================================
+# Project-specific ignores (XAGUSD RL Trader)
+# =============================================================================
+
+# Model checkpoints & weights
+checkpoints/
+*.pt
+*.pth
+*.ckpt
+!checkpoints/.gitkeep
+
+# Historical data files (large CSVs)
+data/historical/*.csv
+data/historical/*.parquet
+!data/historical/.gitkeep
+
+# TensorBoard logs
+logs/tensorboard/
+!logs/tensorboard/.gitkeep
+
+# Trade history logs
+logs/trades/*.csv
+!logs/trades/.gitkeep
+
+# General logs directory (keep structure)
+logs/*.log
+
+# Dashboard (React/Node.js)
+dashboard/node_modules/
+dashboard/dist/
+dashboard/.next/
+dashboard/.cache/
+dashboard/.vite/
+
+# OS specific
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE specific
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.bak
+*.tmp
+*.temp
